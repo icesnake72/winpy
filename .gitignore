@@ -1,0 +1,6 @@
+*.gif
+*.cs
+*.spec
+*.ps
+dist
+build

@@ -51,12 +51,21 @@ python을 이용한 메모장 프로그램
 <FocusOut>	위젯 밖으로 Tab 키를 이용하여 나갔을 때
 <Configure>	위젯의 모양이 수정되었을 때
 '''
-
+import os
+from os import sys
 from pyWinWrapper import MainWindow
 from pyWinWrapper import tk
 from tkinter import scrolledtext, font, messagebox, filedialog
 import tkinter.ttk
 from debugout import DebugOut
+
+recentFile = 'pymemo.txt'
+# 실행 파일이 있는 디렉토리 경로 가져오기
+base_dir = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
+
+# 텍스트 파일 경로 생성
+recentFile_path = os.path.join(base_dir, recentFile)
+
 
 class PyWinMemo(MainWindow):
   def __init__(self, title: str = None, geometry: str = None, resizable:dict=None, minSize:dict=None) -> None:
@@ -66,7 +75,7 @@ class PyWinMemo(MainWindow):
     self.initRecentList()
     
   def initRecentList(self):
-    with open('pymemo.txt', 'rt') as f:
+    with open(recentFile_path, 'rt') as f:
       while True:
         filepath = f.readline()
         filepath = filepath.strip()
@@ -288,7 +297,7 @@ class PyWinMemo(MainWindow):
     
     
   def saveRecents(self):
-    with open('pymemo.txt', 'wt') as f:
+    with open(recentFile_path, 'wt') as f:
       for filepath in self.listbox.get(0, tk.END):
         f.write(f'{filepath}\n')
         

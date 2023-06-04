@@ -63,7 +63,7 @@ recentFile = 'pymemo.txt'
 # 실행 파일이 있는 디렉토리 경로 가져오기
 base_dir = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
 
-# 텍스트 파일 경로 생성
+# 환경 file path 생성
 recentFile_path = os.path.join(base_dir, recentFile)
 
 
